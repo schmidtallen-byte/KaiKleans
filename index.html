@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kai Kleans | North Fulton & Forsyth Counties</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lime:    #C8F135;
+    --teal:    #0D9488;
+    --teal-dk: #065F54;
+    --sky:     #E0F9F6;
+    --orange:  #FF6B2B;
+    --white:   #FAFFF8;
+    --dark:    #0A1F1C;
+    --mid:     #2D4A46;
+    --gray:    #6B8F8A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(10,31,28,0.92);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--lime);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: white; }
+
+  .nav-cta {
+    background: var(--lime);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(200,241,53,0.4); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* animated bubble background */
+  .bubbles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    animation: rise linear infinite;
+  }
+  .bubble:nth-child(1)  { width:60px;  height:60px;  left:10%; background:var(--lime);   animation-duration:9s;  animation-delay:0s;   }
+  .bubble:nth-child(2)  { width:40px;  height:40px;  left:25%; background:var(--teal);   animation-duration:12s; animation-delay:2s;   }
+  .bubble:nth-child(3)  { width:80px;  height:80px;  left:40%; background:var(--lime);   animation-duration:8s;  animation-delay:1s;   }
+  .bubble:nth-child(4)  { width:30px;  height:30px;  left:60%; background:var(--orange); animation-duration:11s; animation-delay:3s;   }
+  .bubble:nth-child(5)  { width:55px;  height:55px;  left:75%; background:var(--lime);   animation-duration:10s; animation-delay:0.5s; }
+  .bubble:nth-child(6)  { width:45px;  height:45px;  left:88%; background:var(--teal);   animation-duration:14s; animation-delay:4s;   }
+  .bubble:nth-child(7)  { width:35px;  height:35px;  left:5%;  background:var(--orange); animation-duration:13s; animation-delay:6s;   }
+  .bubble:nth-child(8)  { width:70px;  height:70px;  left:55%; background:var(--teal);   animation-duration:9s;  animation-delay:7s;   }
+
+  @keyframes rise {
+    0%   { transform: translateY(110vh) scale(1); opacity: 0.08; }
+    90%  { opacity: 0.08; }
+    100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+  }
+
+  /* big K background letter */
+  .hero::before {
+    content: 'K';
+    position: absolute;
+    font-family: 'Baloo 2', cursive;
+    font-size: 55vw;
+    font-weight: 900;
+    color: rgba(200,241,53,0.03);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,241,53,0.15);
+    border: 1px solid rgba(200,241,53,0.4);
+    color: var(--lime);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(4rem, 14vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: white;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 .accent { color: var(--lime); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,0.65);
+    margin-top: 1.2rem;
+    max-width: 500px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.6;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--lime);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 0 0 rgba(200,241,53,0.5);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(200,241,53,0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.05); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SERVICES ─── */
+  .services {
+    padding: 6rem 2rem;
+    background: var(--sky);
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 3.5rem;
+    line-height: 1.1;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--teal);
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(13,148,136,0.1);
+    transition: transform .25s, box-shadow .25s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(13,148,136,0.18);
+  }
+
+  .card-top {
+    padding: 2rem 1.8rem 1.2rem;
+  }
+
+  .card-icon {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.92rem;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  .card-pricing {
+    background: var(--dark);
+    padding: 1.2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .price-row .amt {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--lime);
+  }
+
+  .price-row.highlight .amt {
+    color: var(--orange);
+  }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 0.3rem 0;
+  }
+
+  /* ─── PRICING CALLOUT ─── */
+  .bundle {
+    background: var(--dark);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .bundle .section-label { color: var(--lime); }
+  .bundle .section-title { color: white; }
+
+  .bundle-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .bundle-card {
+    flex: 1 1 240px;
+    max-width: 280px;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    border: 2px solid rgba(255,255,255,0.1);
+    transition: border-color .2s, transform .2s;
+    position: relative;
+  }
+
+  .bundle-card:hover { border-color: var(--lime); transform: translateY(-4px); }
+
+  .bundle-card.featured {
+    border-color: var(--lime);
+    background: rgba(200,241,53,0.06);
+  }
+
+  .bundle-card .popular-tag {
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--lime);
+    color: var(--dark);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .bundle-icon { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
+
+  .bundle-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.3rem;
+  }
+
+  .bundle-price {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--lime);
+    line-height: 1;
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .bundle-price sub {
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(200,241,53,0.7);
+  }
+
+  .bundle-freq {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .bundle-features {
+    list-style: none;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+    text-align: left;
+  }
+
+  .bundle-features li {
+    padding: 0.3rem 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .bundle-features li::before {
+    content: '✓';
+    color: var(--lime);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ─── WHY ─── */
+  .why {
+    padding: 6rem 2rem;
+    background: var(--white);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .why-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .why-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--lime);
+    line-height: 1;
+    display: block;
+    text-shadow: 2px 2px 0 rgba(13,148,136,0.3);
+  }
+
+  .why-label {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--dark);
+    margin: 0.3rem 0 0.5rem;
+    display: block;
+  }
+
+  .why-desc {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ─── SERVICE AREA ─── */
+  .area {
+    background: var(--teal);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .area .section-label { color: var(--lime); }
+  .area .section-title { color: white; margin-bottom: 1rem; }
+
+  .area-sub {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .area-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .area-tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.45rem 1.1rem;
+    border-radius: 50px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    padding: 6rem 2rem;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .contact .section-label { color: var(--lime); }
+  .contact .section-title { color: white; margin-bottom: 0.5rem; }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  .contact-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(200,241,53,0.07);
+    border: 2px solid rgba(200,241,53,0.25);
+    border-radius: 24px;
+    padding: 3rem 4rem;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .contact-icon { font-size: 3rem; }
+
+  .contact-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+  }
+
+  .contact-phone {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--lime);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .contact-phone:hover { color: white; }
+
+  .contact-hint {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .contact-btn {
+    background: var(--lime);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,241,53,0.35); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050F0E;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  footer span { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Kai<span>Kleans</span></div>
+  <a href="tel:4044274969" class="nav-cta">📞 (404) 427-4969</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="bubbles">
+    <div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">📍 North Fulton &amp; Forsyth Counties</div>
+    <h1>Kai<br><span class="accent">Kleans</span></h1>
+    <p class="hero-sub">Your neighborhood's hardest-working kid — pressure washing, trash can service, and dog waste cleanup so you don't have to.</p>
+    <div class="hero-btns">
+      <a href="tel:4044274969" class="btn-primary">📞 Call or Text to Book</a>
+      <a href="#services" class="btn-secondary">See Services ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label">What I Do</p>
+  <h2 class="section-title">Three ways I keep your<br><em>yard & cans spotless</em></h2>
+
+  <div class="service-grid">
+
+    <!-- Pressure Washing -->
+    <div class="service-card">
+      <div class="card-top">
+        <span class="card-icon">🚿</span>
+        <div class="card-title">Trash Can Pressure Washing</div>
+        <p class="card-desc">Deep-clean pressure wash that blasts away grime, bacteria, and odors. Your cans come back looking and smelling brand new.</p>
+      </div>
+      <div class="card-pricing">
+        <div class="price-row">
+          <span>One-time clean (2 cans)</span>
+          <span class="amt">$30</span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span>Monthly recurring (2 cans)</span>
+          <span class="amt">$20/mo</span>
+        </div>
+        <div class="price-row">
+          <span>Each additional can</span>
+          <span class="amt">+$8</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Curb Service -->
+    <div class="service-card">
+      <div class="card-top">
+        <span class="card-icon">🗑️</span>
+        <div class="card-title">Trash Can to &amp; from Curb</div>
+        <p class="card-desc">I roll your bins to the curb the night before pickup and return them after collection. Never miss trash day again.</p>
+      </div>
+      <div class="card-pricing">
+        <div class="price-row">
+          <span>Weekly service (up to 3 bins)</span>
+          <span class="amt">$30/mo</span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span>Each additional bin</span>
+          <span class="amt">+$5/mo</span>
+        </div>
+        <div class="price-row highlight">
+          <span>💡 Bundle with washing</span>
+          <span class="amt">Save $5!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dog Waste -->
+    <div class="service-card">
+      <div class="card-top">
+        <span class="card-icon">🐾</span>
+        <div class="card-title">Dog Waste Cleanup</div>
+        <p class="card-desc">Regular yard scooping keeps your lawn clean, safe, and ready to enjoy. Perfect for busy families and dog lovers.</p>
+      </div>
+      <div class="card-pricing">
+        <div class="price-row">
+          <span>Weekly (1 dog)</span>
+          <span class="amt">$70/mo</span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span>Each additional dog</span>
+          <span class="amt">+$12/mo</span>
+        </div>
+        <div class="price-row">
+          <span>One-time / initial cleanup</span>
+          <span class="amt">From $30</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUNDLE CALLOUT -->
+<section class="bundle" id="pricing">
+  <p class="section-label">Popular Packages</p>
+  <h2 class="section-title">Bundle &amp; <em style="color:var(--lime)">Save</em></h2>
+
+  <div class="bundle-cards">
+
+    <div class="bundle-card">
+      <span class="bundle-icon">🗑️</span>
+      <div class="bundle-name">Curb &amp; Clean</div>
+      <div class="bundle-price">$45<sub>/mo</sub></div>
+      <div class="bundle-freq">Weekly curb + monthly wash</div>
+      <ul class="bundle-features">
+        <li>Weekly trash can to/from curb</li>
+        <li>Monthly pressure wash (2 cans)</li>
+        <li>Save $5 vs. booking separately</li>
+        <li>Up to 3 bins included</li>
+      </ul>
+    </div>
+
+    <div class="bundle-card featured">
+      <div class="popular-tag">⭐ Most Popular</div>
+      <span class="bundle-icon">🏡</span>
+      <div class="bundle-name">Total Yard Care</div>
+      <div class="bundle-price">$110<sub>/mo</sub></div>
+      <div class="bundle-freq">Everything included</div>
+      <ul class="bundle-features">
+        <li>Weekly trash can curb service</li>
+        <li>Monthly pressure wash (2 cans)</li>
+        <li>Weekly dog waste cleanup (1 dog)</li>
+        <li>Best value — save $15/mo</li>
+      </ul>
+    </div>
+
+    <div class="bundle-card">
+      <span class="bundle-icon">🐾</span>
+      <div class="bundle-name">Poop &amp; Scoop</div>
+      <div class="bundle-price">$70<sub>/mo</sub></div>
+      <div class="bundle-freq">Weekly dog waste only</div>
+      <ul class="bundle-features">
+        <li>Weekly backyard cleanup</li>
+        <li>1 dog included</li>
+        <li>+$12/mo per additional dog</li>
+        <li>No contract, cancel anytime</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY KAI -->
+<section class="why">
+  <p class="section-label">Why Kai Kleans?</p>
+  <h2 class="section-title">A neighbor you can <em>trust</em></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-num">🏘️</span>
+      <span class="why-label">Truly Local</span>
+      <p class="why-desc">Kai lives right here in the community. This isn't a big company — it's your neighbor working hard.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">✅</span>
+      <span class="why-label">Reliable</span>
+      <p class="why-desc">Shows up every time, rain or shine. When you book Kai, the job gets done.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">💰</span>
+      <span class="why-label">Fair Prices</span>
+      <p class="why-desc">Honest, competitive pricing — no hidden fees, no surprises on your bill.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">🤝</span>
+      <span class="why-label">Support Local</span>
+      <p class="why-desc">Every dollar goes directly to a young entrepreneur building his first business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="area">
+  <p class="section-label">Where I Serve</p>
+  <h2 class="section-title">North Fulton &amp; Forsyth Counties</h2>
+  <p class="area-sub">Proudly serving families across the area — text to confirm your neighborhood!</p>
+  <div class="area-tags">
+    <span class="area-tag">📍 Alpharetta</span>
+    <span class="area-tag">📍 Cumming</span>
+    <span class="area-tag">📍 Johns Creek</span>
+    <span class="area-tag">📍 Milton</span>
+    <span class="area-tag">📍 Roswell</span>
+    <span class="area-tag">📍 Sugar Hill</span>
+    <span class="area-tag">📍 Suwanee</span>
+    <span class="area-tag">📍 And more!</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Get Started</p>
+  <h2 class="section-title">Ready for a Klean yard?</h2>
+  <p class="contact-sub">Text or call — Kai will get back to you fast!</p>
+  <div class="contact-box">
+    <span class="contact-icon">👋</span>
+    <div class="contact-name">Kai Schmidt</div>
+    <a href="tel:4044274969" class="contact-phone">(404) 427-4969</a>
+    <p class="contact-hint">Call or text anytime — fast response guaranteed</p>
+    <a href="tel:4044274969" class="contact-btn">📞 Book My First Service</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Kai Kleans</span> · North Fulton &amp; Forsyth Counties, GA · All rights reserved.</p>
+</footer>
+
+</body>
+</html>
